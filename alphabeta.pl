@@ -52,7 +52,7 @@ addChips(JN,X,NewX):- split(X,'_',L,R),append(L,[JN],C),append(C,R,NewX).
 **/
 %scoreLigne calcule le score d'une ligne (List) de n'importe quelle taille et l'ajoute à (POINTS) pour donner le résultat final (FINAL) LEFT et RIGHT sont des variables utiles pour la récurence
 
-scoreLigne(List, Pivot, Left, Right, POINTS,FINAL) :- not(member(Pivot, List)),calcPoints(List,POINTS,FINAL).
+scoreLigne(List, Pivot, Left, Right, POINTS,FINAL) :- not(member(Pivot, List)),not(member('_', List)),calcPoints(List,POINTS,FINAL).
 scoreLigne(List, Pivot, Left, Right, POINTS,FINAL) :- decoup(List, Pivot, Left, Right),calcPoints(Left,POINTS,NEWPOINT),scoreLigne(Right,Pivot,X,Y,NEWPOINT,FINAL).
 
 %split amélioré splutant les '_'
