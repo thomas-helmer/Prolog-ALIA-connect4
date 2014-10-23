@@ -25,17 +25,21 @@ abifstat(VALUE,X,D,A,B,JN) :-
 
 
 **/
-findNextMoves(JN,[C1,C2,C3,C4,C5],X1,X2,X3,X4,X5):- 
+findNextMoves(JN,[C1,C2,C3,C4,C5,C6,C7],[X1,X2,X3,X4,X5,X6,X7]):- 
 addChips(JN,C1,NewC1),
 addChips(JN,C2,NewC2),
 addChips(JN,C3,NewC3),
 addChips(JN,C4,NewC4),
 addChips(JN,C5,NewC5),
-X1 is [NewC1,C2,C3,C4,C5],
-X2 is [C1,NewC2,C3,C4,C5],
-X3 is [C1,C2,NewC3,C4,C5],
-X4 is [C1,C2,C3,NewC4,C5],
-X5 is [C1,C2,C3,C4,NewC5].
+addChips(JN,C6,NewC6),
+addChips(JN,C7,NewC7),
+X1 is [NewC1,C2,C3,C4,C5,C6,C7],
+X2 is [C1,NewC2,C3,C4,C5,C6,C7],
+X3 is [C1,C2,NewC3,C4,C5,C6,C7],
+X4 is [C1,C2,C3,NewC4,C5,C6,C7],
+X5 is [C1,C2,C3,C4,NewC5,C6,C7].
+X6 is [C1,C2,C3,C4,C5,NewC6,C7].
+X7 is [C1,C2,C3,C4,C5,C6,NewC7].
 
 addChips(JN,X,NewX):- not(member('_',X)),NewX is X.
 addChips(JN,X,NewX):- split(X,'_',L,R),append(L,[JN],C),append(C,R,NewX).
